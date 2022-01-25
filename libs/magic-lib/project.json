@@ -1,0 +1,42 @@
+{
+  "projectType": "library",
+  "root": "libs/magic-lib",
+  "sourceRoot": "libs/magic-lib/src",
+  "prefix": "wallabyjs",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:ng-packagr-lite",
+      "outputs": ["dist/libs/magic-lib"],
+      "options": {
+        "project": "libs/magic-lib/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/magic-lib/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/magic-lib/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "libs/magic-lib/src/test.ts",
+        "tsConfig": "libs/magic-lib/tsconfig.spec.json",
+        "karmaConfig": "libs/magic-lib/karma.conf.js"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "libs/magic-lib/src/**/*.ts",
+          "libs/magic-lib/src/**/*.html"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,95 @@
+{
+  "projectType": "application",
+  "root": "apps/sample2",
+  "sourceRoot": "apps/sample2/src",
+  "prefix": "wallabyjs",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/sample2",
+        "index": "apps/sample2/src/index.html",
+        "main": "apps/sample2/src/main.ts",
+        "polyfills": "apps/sample2/src/polyfills.ts",
+        "tsConfig": "apps/sample2/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/sample2/src/favicon.ico", "apps/sample2/src/assets"],
+        "styles": ["apps/sample2/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/sample2/src/environments/environment.ts",
+              "with": "apps/sample2/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "sample2:build:production"
+        },
+        "development": {
+          "browserTarget": "sample2:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "sample2:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/sample2/src/**/*.ts",
+          "apps/sample2/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@angular-devkit/build-angular:karma",
+      "options": {
+        "main": "apps/sample2/src/test.ts",
+        "tsConfig": "apps/sample2/tsconfig.spec.json",
+        "karmaConfig": "apps/sample2/karma.conf.js",
+        "polyfills": "apps/sample2/src/polyfills.ts",
+        "styles": [],
+        "scripts": [],
+        "assets": []
+      }
+    }
+  },
+  "tags": []
+}
